@@ -37,7 +37,6 @@ public class SocialConnectorPreferences
 	static void FacebookPreference ()
 	{
 		RenderTitle (FacebookKey.logo, FacebookKey.serviceName);
-		
 		FacebookKey.apiKey = EditorGUILayout.TextField (FacebookKey.keyName, FacebookKey.apiKey);
 		FacebookKey.apiSecret = EditorGUILayout.TextField (FacebookKey.secretName, FacebookKey.apiSecret);	
 	}

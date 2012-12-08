@@ -31,7 +31,6 @@ void PostMessage_(const int *type, const char *text, const char *url) {
         }
         [composeViewController dismissViewControllerAnimated:YES completion:nil];
     };
-    [composeViewController actionForLayer:<#(CALayer *)layer#> forKey:<#(NSString *)event#>]
     [composeViewController setInitialText:[NSString stringWithUTF8String:text ? text : ""]];
     [composeViewController addURL:[NSURL URLWithString:[NSString stringWithUTF8String:url ? url : ""]]];
     [UnityGetGLViewController() presentViewController:composeViewController animated:YES completion:nil];

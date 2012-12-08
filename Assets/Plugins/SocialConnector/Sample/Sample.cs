@@ -17,27 +17,27 @@ public class Sample : MonoBehaviour
 		/// Twitter
 		///=================
 	
-		if (GUILayout.Button ("<size=50><b>ConnectTwitter</b></size>")) {
+		if (GUILayout.Button ("<size=50><b>Twitter</b></size>")) {
 			SocialConector.PostMessage (SocialConector.ServiceType.Twitter);
 		}
-		if (GUILayout.Button ("<size=50><b>ConnectTwitter text</b></size>")) {
-			SocialConector.PostMessage (SocialConector.ServiceType.Twitter,"text");
+		if (GUILayout.Button ("<size=50><b>Twitter text</b></size>")) {
+			SocialConector.PostMessage (SocialConector.ServiceType.Twitter, "text");
 		}
-		if (GUILayout.Button ("<size=50><b>ConnectTwitter text&url</b></size>")) {
-			SocialConector.PostMessage (SocialConector.ServiceType.Twitter,"text","http://japan.unity3d.com/");
+		if (GUILayout.Button ("<size=50><b>Twitter text&url</b></size>")) {
+			SocialConector.PostMessage (SocialConector.ServiceType.Twitter, "text", "http://japan.unity3d.com/");
 		}
 		
 		///=================
 		/// Facebook
 		///=================
 		
-		if (GUILayout.Button ("<size=50><b>ConnectFacebook</b></size>")) {
+		if (GUILayout.Button ("<size=50><b>Facebook</b></size>")) {
 			SocialConector.PostMessage (SocialConector.ServiceType.Facebook);
 		}
-		if (GUILayout.Button ("<size=50><b>ConnectFacebook text</b></size>")) {
+		if (GUILayout.Button ("<size=50><b>Facebook text</b></size>")) {
 			SocialConector.PostMessage (SocialConector.ServiceType.Facebook, "text");
 		}
-		if (GUILayout.Button ("<size=50><b>ConnectFacebook text&url</b></size>")) {
+		if (GUILayout.Button ("<size=50><b>Facebook text&url</b></size>")) {
 			SocialConector.PostMessage (SocialConector.ServiceType.Facebook, "text", "http://japan.unity3d.com/");
 		}
 		

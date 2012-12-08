@@ -1,16 +1,7 @@
 using UnityEngine;
-using System.Collections;
 
 public class Sample : MonoBehaviour
 {
-	GUIStyle style = null;
-
-	void Awake ()
-	{
-		style = new GUIStyle ();
-		style.richText = true;
-	}
-
 	void OnGUI ()
 	{
 		///=================

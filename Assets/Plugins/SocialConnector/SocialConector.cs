@@ -28,8 +28,14 @@ public class SocialConector
 	
 #if UNITY_IPHONE
 	
-	public static void PostMessage ( ServiceType type, string text, string url )
+	private static void _PostMessage ( ServiceType type, string text, string url )
 	{
+		if( type == ServiceType.Line ) {
+			Application.OpenURL(string.Format("line://msg/text/{0}", System.Uri.EscapeUriString( text + (string.IsNullOrEmpty( url ) ? "" : " - " + url) ) ) );
+			return;
+		}
+		
+		
 		if ( IsAvailableForServiceType_ ( (int) type ) ) {
 			PostMessage_ ( (int) type, text, url );
 		} 
@@ -38,7 +44,7 @@ public class SocialConector
 	
 #elif UNITY_ANDROID
 	
-	public static void PostMessage (ServiceType type, string text, string url)
+	private static void _PostMessage (ServiceType type, string text, string url)
 	{
 		string packageName = string.Empty;
 		
@@ -46,6 +52,9 @@ public class SocialConector
 			packageName = "com.twitter.android";
 		}else if (type.Equals(ServiceType.Facebook)){
 			packageName = "com.facebook.katana";
+		}else if(type.Equals(ServiceType.Line)){
+			Application.OpenURL(string.Format("line://msg/text/{0}", System.Uri.EscapeUriString( text + (string.IsNullOrEmpty( url ) ? "" : " - " + url) ) ) );
+			return;
 		}
 		
 		AndroidJavaObject intent = new AndroidJavaObject ( "android.content.Intent" );
@@ -65,19 +74,23 @@ public class SocialConector
 	public enum ServiceType
 	{
 		Twitter = 0,
-		Facebook = 1
+		Facebook = 1,
+		Line =2
 	}
 	
 	
 	public static void PostMessage (ServiceType type)
 	{
+		_PostMessage (type, null, null);
 	}
 	
 	public static void PostMessage (ServiceType type, string text)
 	{
+		_PostMessage (type, text, null);
 	}
 
 	public static void PostMessage (ServiceType type, string text, string url)
 	{
+		_PostMessage (type, text, url);
 	}
 }

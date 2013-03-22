@@ -71,11 +71,13 @@ public class SocialConector
 	
 	public static void PostMessage (ServiceType type)
 	{
-		PostMessage ( type, null, null );
 	}
 	
 	public static void PostMessage (ServiceType type, string text)
 	{
-		PostMessage ( type, text, null );
+	}
+
+	public static void PostMessage (ServiceType type, string text, string url)
+	{
 	}
 }

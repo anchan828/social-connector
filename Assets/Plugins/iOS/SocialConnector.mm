@@ -11,29 +11,45 @@
 
 
 extern "C" {
-
-BOOL IsAvailableForServiceType_(const int *type) {
-    return [SLComposeViewController isAvailableForServiceType:type == 0 ? SLServiceTypeTwitter : SLServiceTypeFacebook];
-}
-
-void PostMessage_(const int *type, const char *text, const char *url) {
-
-    SLComposeViewController *composeViewController = [SLComposeViewController composeViewControllerForServiceType:type == 0 ? SLServiceTypeTwitter : SLServiceTypeFacebook];
-
-    composeViewController.completionHandler = ^(SLComposeViewControllerResult res) {
-        if (res == SLComposeViewControllerResultCancelled) {
-            // Cancel
-            // UnitySendMessage(<#(char const *)obj#>, <#(char const *)method#>, <#(char const *)msg#>)
+    
+    BOOL SocialConnector_IsAvailableForServiceType(const int *type) {
+        return [SLComposeViewController isAvailableForServiceType:type == 0 ? SLServiceTypeTwitter : SLServiceTypeFacebook];
+    }
+    
+    void SocialConnector_PostMessage(const int *type, const char *text, const char *url, const char *textureURL) {
+        
+        NSString *_text = [NSString stringWithUTF8String:text ? text : ""];
+        NSString *_url = [NSString stringWithUTF8String:url ? url : ""];
+        NSString *_textureURL = [NSString stringWithUTF8String:textureURL ? textureURL : ""];
+        
+        SLComposeViewController *composeViewController = [SLComposeViewController composeViewControllerForServiceType:type == 0 ? SLServiceTypeTwitter : SLServiceTypeFacebook];
+        
+        composeViewController.completionHandler = ^(SLComposeViewControllerResult res) {
+            if (res == SLComposeViewControllerResultCancelled) {
+                // Cancel
+                // UnitySendMessage(<#(char const *)obj#>, <#(char const *)method#>, <#(char const *)msg#>)
+            }
+            else if (res == SLComposeViewControllerResultDone) {
+                // done!
+                // UnitySendMessage(<#(char const *)obj#>, <#(char const *)method#>, <#(char const *)msg#>)
+            }
+            [composeViewController dismissViewControllerAnimated:YES completion:nil];
+        };
+        
+        if ([_text length] != 0) {
+            [composeViewController setInitialText:_text];
         }
-        else if (res == SLComposeViewControllerResultDone) {
-            // done!
-            // UnitySendMessage(<#(char const *)obj#>, <#(char const *)method#>, <#(char const *)msg#>)
+        if ([_url length] != 0) {
+            [composeViewController addURL:[NSURL URLWithString:_url]];
         }
-        [composeViewController dismissViewControllerAnimated:YES completion:nil];
-    };
-    [composeViewController setInitialText:[NSString stringWithUTF8String:text ? text : ""]];
-    [composeViewController addURL:[NSURL URLWithString:[NSString stringWithUTF8String:url ? url : ""]]];
-    [UnityGetGLViewController() presentViewController:composeViewController animated:YES completion:nil];
-}
-
+        if ([_textureURL length] != 0) {
+            UIImage *image = [UIImage imageWithContentsOfFile:_textureURL];
+            if (image != nil) {
+                [composeViewController addImage:image];
+            }
+        }
+        
+        [UnityGetGLViewController() presentViewController:composeViewController animated:YES completion:nil];
+    }
+    
 }

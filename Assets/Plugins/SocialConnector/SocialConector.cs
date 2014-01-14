@@ -8,12 +8,12 @@ using System.Runtime.InteropServices;
 public class SocialConector
 {
 	#if UNITY_IPHONE
+	[DllImport ("__Internal")]
+	private static extern bool SocialConnector_IsAvailableForServiceType (int type);
+
+	[DllImport ("__Internal")]
+	private static extern void SocialConnector_PostMessage (int type, string text, string url, string textureUrl);
 	
-	[DllImport("__Internal")]
-	private static extern bool IsAvailableForServiceType_( int type );
-	
-	[DllImport("__Internal")]
-	private static extern void PostMessage_( int type, string text, string url ); 
 
 #elif UNITY_ANDROID
 	private static AndroidJavaObject clazz = new AndroidJavaClass ("com.unity3d.player.UnityPlayer");
@@ -22,16 +22,16 @@ public class SocialConector
 	#endif
 	#if UNITY_IPHONE
 	
-	private static void _PostMessage ( ServiceType type, string text, string url )
+	private static void _PostMessage (ServiceType type, string text, string url, string textureUrl)
 	{
-		if( type == ServiceType.Line ) {
-			Application.OpenURL(string.Format("line://msg/text/{0}", System.Uri.EscapeUriString( text + (string.IsNullOrEmpty( url ) ? "" : " - " + url) ) ) );
+		if (type == ServiceType.Line) {
+			Application.OpenURL (string.Format ("line://msg/text/{0}", System.Uri.EscapeUriString (text + (string.IsNullOrEmpty (url) ? "" : " - " + url))));
 			return;
 		}
 		
 		
-		if ( IsAvailableForServiceType_ ( (int) type ) ) {
-			PostMessage_ ( (int) type, text, url );
+		if (SocialConnector_IsAvailableForServiceType ((int)type)) {
+			SocialConnector_PostMessage ((int)type, text, url, textureUrl);
 		} 
 	}
 

@@ -60,5 +60,9 @@ public class Sample : MonoBehaviour
 		if (GUILayout.Button ("<size=50><b>Text & URL</b></size>")) {
 			SocialConector.PostMessage (SocialConector.ServiceType.Line, "text", "http://japan.unity3d.com/");
 		}
+
+		if (GUILayout.Button ("<size=50><b>Image</b></size>")) {
+			SocialConector.PostMessage (SocialConector.ServiceType.Line, "", "", imagePath);
+		}
 	}
 }

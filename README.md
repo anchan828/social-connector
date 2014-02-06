@@ -1,4 +1,4 @@
-Social Connector v0.2.0
+Social Connector v0.2.2
 ================
 
 1つのAPIでTwitter/Facebook/LINEにポスト出来るUnityプラグインです。
@@ -61,6 +61,7 @@ public class Sample : MonoBehaviour
 
 	void OnGUI ()
 	{
+		GUILayout.Label(System.DateTime.Now.ToString());
 		GUILayout.Label (imagePath);
 
 		if (GUILayout.Button ("Take")) {
@@ -71,15 +72,15 @@ public class Sample : MonoBehaviour
 		/// Twitter
 		///=================
 
-		GUILayout.Label ("<size=50><b>Twitter</b></size>");
-		if (GUILayout.Button ("<size=50><b>Text</b></size>")) {
+		GUILayout.Label ("<size=40><b>Twitter</b></size>");
+		if (GUILayout.Button ("<size=40><b>Text</b></size>")) {
 			SocialConector.PostMessage (SocialConector.ServiceType.Twitter, "Social Connector");
 		}
-		if (GUILayout.Button ("<size=50><b>Text & URL</b></size>")) {
+		if (GUILayout.Button ("<size=40><b>Text & URL</b></size>")) {
 			SocialConector.PostMessage (SocialConector.ServiceType.Twitter, "Social Connector", "https://github.com/anchan828/social-connector");
 		}
 
-		if (GUILayout.Button ("<size=50><b>Text & URL & Image</b></size>")) {
+		if (GUILayout.Button ("<size=40><b>Text & URL & Image</b></size>")) {
 			SocialConector.PostMessage (SocialConector.ServiceType.Twitter, "Social Connector", "https://github.com/anchan828/social-connector", imagePath);
 		}
 		
@@ -87,15 +88,15 @@ public class Sample : MonoBehaviour
 		/// Facebook
 		///=================
 		
-		GUILayout.Label ("<size=50><b>Facebook</b></size>");
+		GUILayout.Label ("<size=40><b>Facebook</b></size>");
 
-		if (GUILayout.Button ("<size=50><b>Text</b></size>")) {
+		if (GUILayout.Button ("<size=40><b>Text</b></size>")) {
 			SocialConector.PostMessage (SocialConector.ServiceType.Facebook, "Social Connector");
 		}
-		if (GUILayout.Button ("<size=50><b>Text & URL</b></size>")) {
+		if (GUILayout.Button ("<size=40><b>Text & URL</b></size>")) {
 			SocialConector.PostMessage (SocialConector.ServiceType.Facebook, "Social Connector", "https://github.com/anchan828/social-connector");
 		}
-		if (GUILayout.Button ("<size=50><b>Text & URL & Image</b></size>")) {
+		if (GUILayout.Button ("<size=40><b>Text & URL & Image</b></size>")) {
 			SocialConector.PostMessage (SocialConector.ServiceType.Facebook, "Social Connector", "https://github.com/anchan828/social-connector", imagePath);
 		}
 		
@@ -103,13 +104,17 @@ public class Sample : MonoBehaviour
 		/// LINE
 		///=================
 		
-		GUILayout.Label ("<size=50><b>LINE</b></size>");
+		GUILayout.Label ("<size=40><b>LINE</b></size>");
 
-		if (GUILayout.Button ("<size=50><b>Text</b></size>")) {
+		if (GUILayout.Button ("<size=40><b>Text</b></size>")) {
 			SocialConector.PostMessage (SocialConector.ServiceType.Line, "text");
 		}
-		if (GUILayout.Button ("<size=50><b>Text & URL</b></size>")) {
+		if (GUILayout.Button ("<size=40><b>Text & URL</b></size>")) {
 			SocialConector.PostMessage (SocialConector.ServiceType.Line, "text", "http://japan.unity3d.com/");
+		}
+
+		if (GUILayout.Button ("<size=40><b>Image</b></size>")) {
+			SocialConector.PostMessage (SocialConector.ServiceType.Line, "", "", imagePath);
 		}
 	}
 }
@@ -141,9 +146,3 @@ freely, subject to the following restrictions:
 # Future
 
 See [Issue](https://github.com/anchan828/social-connector/issues?state=open)
-
-
-<!--![iOS-Facebook](http://cloud.github.com/downloads/anchan828/social-connector/2012-12-09%2002.07.18.png)-->
-<!--![Android-Twitter](http://cloud.github.com/downloads/anchan828/social-connector/SC20121209-010941.png)-->
-<!--![Android-Facebook](http://cloud.github.com/downloads/anchan828/social-connector/SC20121209-011757.png)-->
-<!--![Android](http://cloud.github.com/downloads/anchan828/social-connector/SC20121209-010925.png)-->

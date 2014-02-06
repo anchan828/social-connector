@@ -9,33 +9,21 @@ public class SocialConector
 {
 	#if UNITY_IPHONE
 	[DllImport ("__Internal")]
-	private static extern bool SocialConnector_IsAvailableForServiceType (int type);
-
-	[DllImport ("__Internal")]
 	private static extern void SocialConnector_PostMessage (int type, string text, string url, string textureUrl);
-	
 
-#elif UNITY_ANDROID
+	#elif UNITY_ANDROID
 	private static AndroidJavaObject clazz = new AndroidJavaClass ("com.unity3d.player.UnityPlayer");
 	private static AndroidJavaObject activity = clazz.GetStatic<AndroidJavaObject> ("currentActivity");
-
 	#endif
+
 	#if UNITY_IPHONE
 	
 	private static void _PostMessage (ServiceType type, string text, string url, string textureUrl)
 	{
-		if (type == ServiceType.Line) {
-			Application.OpenURL (string.Format ("line://msg/text/{0}", System.Uri.EscapeUriString (text + (string.IsNullOrEmpty (url) ? "" : " - " + url))));
-			return;
-		}
-		
-		
-		if (SocialConnector_IsAvailableForServiceType ((int)type)) {
 			SocialConnector_PostMessage ((int)type, text, url, textureUrl);
-		} 
 	}
 
-#elif UNITY_ANDROID
+	#elif UNITY_ANDROID
 	private static void _PostMessage (ServiceType type, string text, string url, string textureUrl)
 	{
 		string packageName = string.Empty;
@@ -45,7 +33,24 @@ public class SocialConector
 		} else if (type.Equals (ServiceType.Facebook)) {
 			packageName = "com.facebook.katana";
 		} else if (type.Equals (ServiceType.Line)) {
-			Application.OpenURL (string.Format ("line://msg/text/{0}", System.Uri.EscapeUriString (text + (string.IsNullOrEmpty (url) ? "" : " - " + url))));
+
+			string contentType = "";
+			string contentKey = "";
+
+			if(string.IsNullOrEmpty(textureUrl)){
+				contentType = "text";
+				contentKey = text;
+
+				if(!string.IsNullOrEmpty (url)){
+					contentKey += " - " + url;
+				}
+			}else{
+				contentType = "image";
+				contentKey = textureUrl;
+			}
+
+			string lineUrl = string.Format ("line://msg/{0}/{1}", contentType, contentKey);
+			Application.OpenURL (lineUrl);
 			return;
 		}
 

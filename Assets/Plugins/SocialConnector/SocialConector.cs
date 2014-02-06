@@ -33,7 +33,24 @@ public class SocialConector
 		} else if (type.Equals (ServiceType.Facebook)) {
 			packageName = "com.facebook.katana";
 		} else if (type.Equals (ServiceType.Line)) {
-			Application.OpenURL (string.Format ("line://msg/text/{0}", System.Uri.EscapeUriString (text + (string.IsNullOrEmpty (url) ? "" : " - " + url))));
+
+			string contentType = "";
+			string contentKey = "";
+
+			if(string.IsNullOrEmpty(textureUrl)){
+				contentType = "text";
+				contentKey = text;
+
+				if(!string.IsNullOrEmpty (url)){
+					contentKey += " - " + url;
+				}
+			}else{
+				contentType = "image";
+				contentKey = textureUrl;
+			}
+
+			string lineUrl = string.Format ("line://msg/{0}/{1}", contentType, contentKey);
+			Application.OpenURL (lineUrl);
 			return;
 		}
 

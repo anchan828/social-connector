@@ -1,4 +1,4 @@
-Social Connector v0.2.2
+Social Connector v0.2.3
 ================
 
 1つのAPIでTwitter/Facebook/LINEにポスト出来るUnityプラグインです。
@@ -55,6 +55,15 @@ public class Sample : MonoBehaviour
 {
 	string imagePath {
 		get {
+
+#if UNITY_EDITOR_OSX
+			return Application.dataPath +"/../image.png";
+#endif
+
+#if UNITY_STANDALONE_OSX
+			return Application.dataPath +"/Data/image.png";
+#endif
+
 			return  Application.persistentDataPath + "/image.png";
 		}
 	}
@@ -99,7 +108,8 @@ public class Sample : MonoBehaviour
 		if (GUILayout.Button ("<size=40><b>Text & URL & Image</b></size>")) {
 			SocialConector.PostMessage (SocialConector.ServiceType.Facebook, "Social Connector", "https://github.com/anchan828/social-connector", imagePath);
 		}
-		
+
+		#if !UNITY_STANDALONE_OSX
 		///=================
 		/// LINE
 		///=================
@@ -116,6 +126,8 @@ public class Sample : MonoBehaviour
 		if (GUILayout.Button ("<size=40><b>Image</b></size>")) {
 			SocialConector.PostMessage (SocialConector.ServiceType.Line, "", "", imagePath);
 		}
+
+		#endif
 	}
 }
 ```

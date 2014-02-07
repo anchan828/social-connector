@@ -1,6 +1,6 @@
 using UnityEngine;
 
-#if UNITY_IPHONE
+#if UNITY_IPHONE || UNITY_STANDALONE_OSX
 
 using System.Runtime.InteropServices;
 
@@ -14,9 +14,15 @@ public class SocialConector
 	#elif UNITY_ANDROID
 	private static AndroidJavaObject clazz = new AndroidJavaClass ("com.unity3d.player.UnityPlayer");
 	private static AndroidJavaObject activity = clazz.GetStatic<AndroidJavaObject> ("currentActivity");
+
+
+	#elif UNITY_STANDALONE_OSX
+	[DllImport ("SocialConnector")]
+	private static extern void SocialConnector_PostMessage (int type, string text, string url, string textureUrl);
+
 	#endif
 
-	#if UNITY_IPHONE
+	#if UNITY_IPHONE || UNITY_STANDALONE_OSX
 	
 	private static void _PostMessage (ServiceType type, string text, string url, string textureUrl)
 	{

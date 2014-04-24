@@ -5,7 +5,7 @@ using UnityEngine;
 using System.Runtime.InteropServices;
 
 #endif
-public class SocialConector
+public class SocialConnector
 {
 	#if UNITY_IPHONE
 	[DllImport ("__Internal")]

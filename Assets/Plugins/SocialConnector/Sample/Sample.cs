@@ -32,14 +32,14 @@ public class Sample : MonoBehaviour
 
 		GUILayout.Label ("<size=40><b>Twitter</b></size>");
 		if (GUILayout.Button ("<size=40><b>Text</b></size>")) {
-			SocialConector.PostMessage (SocialConector.ServiceType.Twitter, "Social Connector");
+			SocialConnector.PostMessage (SocialConnector.ServiceType.Twitter, "Social Connector");
 		}
 		if (GUILayout.Button ("<size=40><b>Text & URL</b></size>")) {
-			SocialConector.PostMessage (SocialConector.ServiceType.Twitter, "Social Connector", "https://github.com/anchan828/social-connector");
+			SocialConnector.PostMessage (SocialConnector.ServiceType.Twitter, "Social Connector", "https://github.com/anchan828/social-connector");
 		}
 
 		if (GUILayout.Button ("<size=40><b>Text & URL & Image</b></size>")) {
-			SocialConector.PostMessage (SocialConector.ServiceType.Twitter, "Social Connector", "https://github.com/anchan828/social-connector", imagePath);
+			SocialConnector.PostMessage (SocialConnector.ServiceType.Twitter, "Social Connector", "https://github.com/anchan828/social-connector", imagePath);
 		}
 		
 		///=================
@@ -49,13 +49,13 @@ public class Sample : MonoBehaviour
 		GUILayout.Label ("<size=40><b>Facebook</b></size>");
 
 		if (GUILayout.Button ("<size=40><b>Text</b></size>")) {
-			SocialConector.PostMessage (SocialConector.ServiceType.Facebook, "Social Connector");
+			SocialConnector.PostMessage (SocialConnector.ServiceType.Facebook, "Social Connector");
 		}
 		if (GUILayout.Button ("<size=40><b>Text & URL</b></size>")) {
-			SocialConector.PostMessage (SocialConector.ServiceType.Facebook, "Social Connector", "https://github.com/anchan828/social-connector");
+			SocialConnector.PostMessage (SocialConnector.ServiceType.Facebook, "Social Connector", "https://github.com/anchan828/social-connector");
 		}
 		if (GUILayout.Button ("<size=40><b>Text & URL & Image</b></size>")) {
-			SocialConector.PostMessage (SocialConector.ServiceType.Facebook, "Social Connector", "https://github.com/anchan828/social-connector", imagePath);
+			SocialConnector.PostMessage (SocialConnector.ServiceType.Facebook, "Social Connector", "https://github.com/anchan828/social-connector", imagePath);
 		}
 
 		#if !UNITY_STANDALONE_OSX
@@ -66,14 +66,14 @@ public class Sample : MonoBehaviour
 		GUILayout.Label ("<size=40><b>LINE</b></size>");
 
 		if (GUILayout.Button ("<size=40><b>Text</b></size>")) {
-			SocialConector.PostMessage (SocialConector.ServiceType.Line, "text");
+			SocialConnector.PostMessage (SocialConnector.ServiceType.Line, "text");
 		}
 		if (GUILayout.Button ("<size=40><b>Text & URL</b></size>")) {
-			SocialConector.PostMessage (SocialConector.ServiceType.Line, "text", "http://japan.unity3d.com/");
+			SocialConnector.PostMessage (SocialConnector.ServiceType.Line, "text", "http://japan.unity3d.com/");
 		}
 
 		if (GUILayout.Button ("<size=40><b>Image</b></size>")) {
-			SocialConector.PostMessage (SocialConector.ServiceType.Line, "", "", imagePath);
+			SocialConnector.PostMessage (SocialConnector.ServiceType.Line, "", "", imagePath);
 		}
 
 		#endif

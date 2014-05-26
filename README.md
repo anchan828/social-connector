@@ -1,58 +1,33 @@
-Social Connector v0.2.9
+Social Connector v0.3.0
 ================
 
 1つのAPIでTwitter/Facebook/LINEにポスト出来るUnityプラグインです。
 
-## 追加 v0.2.9 **SocialConnector.Share**
+今まで使用していたPostMessageを使用したい方は[こちら](https://github.com/anchan828/social-connector/releases/tag/v0.2.9)
 
-```
-SocialConnector.Share("Social Connector", "https://github.com/anchan828/social-connector", imagePath);
-```
+![](https://dl.dropboxusercontent.com/u/153254465/screenshot/2014-05-26%2018.23.09.png)
 
-
-![](https://dl.dropboxusercontent.com/u/153254465/screenshot/2014-05-26%2017.16.23.png)
-
-
-**注意:** Android版のFacebookアプリはACTION_SENDを許可していないので使用できません。
-
-
-![Twitter](https://dl.dropboxusercontent.com/u/153254465/screenshot/2014-01-15%2001.01.26.png)
-
+**注意:** Android版のFacebookアプリはACTION_SENDを許可していないのでテキストは共有できません。
 
 # Requirements
+
 ## iOS
-* **iOS6.0+** :  using Social.framework 
+* **iOS6.0+** 
 
 ## Android
 * Android 2.3+
 
 # Usage
 
-
-
 ```
-///=================
-/// Twitter
-///=================
-		
-SocialConector.PostMessage ( SocialConector.ServiceType.Twitter, "text" );
-
-
-///=================
-/// Facebook
-///=================
-
-SocialConector.PostMessage ( SocialConector.ServiceType.Facebook, "text" );
-
-///=================
-/// LINE
-///=================
-
-SocialConector.PostMessage ( SocialConector.ServiceType.Line, "text" );	
-	
+SocialConnector.Share("Social Connector", "https://github.com/anchan828/social-connector", imagePath);
 ```
 
 # Example
+
+```
+SocialConnector.Share("Social Connector", "https://github.com/anchan828/social-connector", imagePath);
+```
 
 See  [Assets/Plugins/SocialConnector/Sample/Sample.cs](https://github.com/anchan828/social-connector/blob/master/Assets/Plugins/SocialConnector/Sample/Sample.cs)
 
@@ -63,82 +38,37 @@ using UnityEngine;
 
 public class Sample : MonoBehaviour
 {
-	string imagePath {
-		get {
+    string imagePath
+    {
+        get
+        {
+            return Application.persistentDataPath + "/image.png";
+        }
+    }
 
-#if UNITY_EDITOR_OSX
-			return Application.dataPath +"/../image.png";
-#endif
+    void OnGUI()
+    {
 
-#if UNITY_STANDALONE_OSX
-			return Application.dataPath +"/Data/image.png";
-#endif
+        if (GUILayout.Button("<size=30><b>Take</b></size>", GUILayout.Height(60)))
+        {
+            Application.CaptureScreenshot("image.png");
+        }
 
-			return  Application.persistentDataPath + "/image.png";
-		}
-	}
+        GUILayout.Space(60);
 
-	void OnGUI ()
-	{
-		GUILayout.Label(System.DateTime.Now.ToString());
-		GUILayout.Label (imagePath);
+        ///=================
+        /// Share
+        ///=================
 
-		if (GUILayout.Button ("Take")) {
-			Application.CaptureScreenshot ("image.png");
-		}
-
-		///=================
-		/// Twitter
-		///=================
-
-		GUILayout.Label ("<size=40><b>Twitter</b></size>");
-		if (GUILayout.Button ("<size=40><b>Text</b></size>")) {
-			SocialConector.PostMessage (SocialConector.ServiceType.Twitter, "Social Connector");
-		}
-		if (GUILayout.Button ("<size=40><b>Text & URL</b></size>")) {
-			SocialConector.PostMessage (SocialConector.ServiceType.Twitter, "Social Connector", "https://github.com/anchan828/social-connector");
-		}
-
-		if (GUILayout.Button ("<size=40><b>Text & URL & Image</b></size>")) {
-			SocialConector.PostMessage (SocialConector.ServiceType.Twitter, "Social Connector", "https://github.com/anchan828/social-connector", imagePath);
-		}
-		
-		///=================
-		/// Facebook
-		///=================
-		
-		GUILayout.Label ("<size=40><b>Facebook</b></size>");
-
-		if (GUILayout.Button ("<size=40><b>Text</b></size>")) {
-			SocialConector.PostMessage (SocialConector.ServiceType.Facebook, "Social Connector");
-		}
-		if (GUILayout.Button ("<size=40><b>Text & URL</b></size>")) {
-			SocialConector.PostMessage (SocialConector.ServiceType.Facebook, "Social Connector", "https://github.com/anchan828/social-connector");
-		}
-		if (GUILayout.Button ("<size=40><b>Text & URL & Image</b></size>")) {
-			SocialConector.PostMessage (SocialConector.ServiceType.Facebook, "Social Connector", "https://github.com/anchan828/social-connector", imagePath);
-		}
-
-		#if !UNITY_STANDALONE_OSX
-		///=================
-		/// LINE
-		///=================
-		
-		GUILayout.Label ("<size=40><b>LINE</b></size>");
-
-		if (GUILayout.Button ("<size=40><b>Text</b></size>")) {
-			SocialConector.PostMessage (SocialConector.ServiceType.Line, "text");
-		}
-		if (GUILayout.Button ("<size=40><b>Text & URL</b></size>")) {
-			SocialConector.PostMessage (SocialConector.ServiceType.Line, "text", "http://japan.unity3d.com/");
-		}
-
-		if (GUILayout.Button ("<size=40><b>Image</b></size>")) {
-			SocialConector.PostMessage (SocialConector.ServiceType.Line, "", "", imagePath);
-		}
-
-		#endif
-	}
+        if (GUILayout.Button("<size=30><b>Share</b></size>", GUILayout.Height(60)))
+        {
+            SocialConnector.Share("Social Connector", "https://github.com/anchan828/social-connector", null);
+        }
+        if (GUILayout.Button("<size=30><b>Share Image</b></size>", GUILayout.Height(60)))
+        {
+            SocialConnector.Share("Social Connector", "https://github.com/anchan828/social-connector", imagePath);
+        }
+    }
 }
 ```
 
@@ -164,7 +94,3 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 
 ```
-
-# Future
-
-See [Issue](https://github.com/anchan828/social-connector/issues?state=open)

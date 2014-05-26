@@ -5,7 +5,6 @@ Social Connector v0.3.0
 
 今まで使用していたPostMessageを使用したい方は[こちら](https://github.com/anchan828/social-connector/releases/tag/v0.2.9)
 
-![](https://dl.dropboxusercontent.com/u/153254465/screenshot/2014-05-26%2018.23.09.png)
 
 **注意:** Android版のFacebookアプリはACTION_SENDを許可していないのでテキストは共有できません。
 
@@ -25,13 +24,10 @@ SocialConnector.Share("Social Connector", "https://github.com/anchan828/social-c
 
 # Example
 
-```
-SocialConnector.Share("Social Connector", "https://github.com/anchan828/social-connector", imagePath);
-```
 
 See  [Assets/Plugins/SocialConnector/Sample/Sample.cs](https://github.com/anchan828/social-connector/blob/master/Assets/Plugins/SocialConnector/Sample/Sample.cs)
 
-![Scene](https://dl.dropboxusercontent.com/u/153254465/screenshot/2014-01-15%2000.59.23.png)
+![](https://dl.dropboxusercontent.com/u/153254465/screenshot/2014-05-26%2018.23.09.png)
 
 ```
 using UnityEngine;

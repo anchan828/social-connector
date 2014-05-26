@@ -1,7 +1,17 @@
-Social Connector v0.2.3
+Social Connector v0.2.9
 ================
 
 1つのAPIでTwitter/Facebook/LINEにポスト出来るUnityプラグインです。
+
+## 追加 v0.2.9 **SocialConnector.Share**
+
+```
+SocialConnector.Share("Social Connector", "https://github.com/anchan828/social-connector", imagePath);
+```
+
+
+![](https://dl.dropboxusercontent.com/u/153254465/screenshot/2014-05-26%2017.16.23.png)
+
 
 **注意:** Android版のFacebookアプリはACTION_SENDを許可していないので使用できません。
 

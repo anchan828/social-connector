@@ -11,22 +11,14 @@
 extern "C" {
 
 @interface SocialActivity : UIActivity
-
-- (id)initWithName:(NSString *)title scheme:(NSString *)scheme bundleIdentifier:(NSString *)bundleIdentifier;
-
-+ (id)_activityFunctionImage:(id)arg1;
-
-+ (id)_activityGenericImage:(id)arg1;
-
-+ (id)_activityImageForApplication:(id)arg1;
+- (id)initWithTitle:(NSString *)title scheme:(NSString *)scheme imageName:(NSString *)imageName action:(id)myblock;
 @end
 
 @implementation SocialActivity
 
 NSString *_title;
 NSString *_scheme;
-NSString *_bundleIdentifier;
-NSArray *_activityItems;
+NSString *_imageName;
 
 void *(^_myblock)(void);
 
@@ -34,10 +26,10 @@ void *(^_myblock)(void);
     return UIActivityCategoryShare;
 }
 
-- (id)initWithTitle:(NSString *)title scheme:(NSString *)scheme bundleIdentifier:(NSString *)bundleIdentifier action:myblock {
+- (id)initWithTitle:(NSString *)title scheme:(NSString *)scheme imageName:(NSString *)imageName action:myblock {
     _title = title;
     _scheme = scheme;
-    _bundleIdentifier = bundleIdentifier;
+    _imageName = imageName;
     _myblock = [myblock copy];
     return self;
 }
@@ -46,17 +38,14 @@ void *(^_myblock)(void);
     return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:_scheme]];
 }
 
-- (NSString *)activityType {
-    return _bundleIdentifier;
-}
-
 - (NSString *)activityTitle {
     return _title;
 }
 
 - (UIImage *)_activityImage {
-    if ([self isInstalled])
-        return [NSClassFromString(@"UIActivity") _activityImageForApplication:_bundleIdentifier];
+    if ([self isInstalled]) {
+        return [UIImage imageNamed:_imageName];
+    }
     else {
         return nil;
     }
@@ -68,7 +57,6 @@ void *(^_myblock)(void);
 }
 
 - (void)prepareWithActivityItems:(NSArray *)activityItems; {
-    _activityItems = activityItems;
     [super prepareWithActivityItems:activityItems];
 }
 
@@ -102,7 +90,7 @@ void SocialConnector_Share(const char *text, const char *url, const char *textur
 
     NSArray *actItems = [NSArray arrayWithObjects:_text, _url, image, nil];
 
-    SocialActivity *social = [[[SocialActivity alloc] initWithTitle:@"LINE" scheme:@"line://" bundleIdentifier:@"jp.naver.line" action:^() {
+    SocialActivity *social = [[[SocialActivity alloc] initWithTitle:@"LINE" scheme:@"line://" imageName:@"LINE_icon01.png" action:^() {
 
         NSString *contentType;
         NSString *contentKey;

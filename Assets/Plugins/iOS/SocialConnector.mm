@@ -90,7 +90,7 @@ void SocialConnector_Share(const char *text, const char *url, const char *textur
 
     NSArray *actItems = [NSArray arrayWithObjects:_text, _url, image, nil];
 
-    SocialActivity *social = [[[SocialActivity alloc] initWithTitle:@"LINE" scheme:@"line://" imageName:@"LINE_icon01.png" action:^() {
+    SocialActivity *social = [[[SocialActivity alloc] initWithTitle:@"LINE" scheme:@"line://" imageName:@"LINE" action:^() {
 
         NSString *contentType;
         NSString *contentKey;

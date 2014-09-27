@@ -1,4 +1,4 @@
-Social Connector v0.3.1
+Social Connector v0.3.2
 ================
 
 1つのAPIでTwitter/Facebook/LINEにポスト出来るUnityプラグインです。
@@ -25,13 +25,13 @@ SocialConnector.Share("Social Connector", "https://github.com/anchan828/social-c
 
 # やらないといけないこと
 
-iOSプロジェクトに[LINEアイコン画像](http://line.me/logo/ja)を含めなければいけません。(サイズは60x60と120x120)
+iOSプロジェクトに[LINEアイコン画像](http://line.me/logo/ja)を含めなければいけません。デフォルトではダミー画像となっています。なので差し替えてください。(サイズは57x57と120x120)
 
-![](https://dl.dropboxusercontent.com/u/153254465/screenshot/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202014-06-18%2020.33.35.png)
+![](https://db.tt/BYa1pgYH)
 
-ファイル名は`LINE_icon01.png`固定です。
+ファイル名は`LINE_icon01.png`と`LINE_icon01@2x.png`固定です。
 
-変更したい場合は`SocialConnector.mm`内を編集してください。
+変更したい場合は`Contents.json`内を編集してください。
 
 # Example
 

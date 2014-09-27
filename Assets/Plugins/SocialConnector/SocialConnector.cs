@@ -60,8 +60,10 @@ public class SocialConnector
         Share(text, url, null);
     }
 
-    public static void Share(string text, string url, string textureUrl)
-    {
-        _Share(text, url, textureUrl);
-    }
+	public static void Share(string text, string url, string textureUrl)
+	{
+#if UNITY_ANDROID || UNITY_IPHONE
+		_Share(text, url, textureUrl);
+#endif
+	}
 }

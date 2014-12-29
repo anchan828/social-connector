@@ -125,7 +125,7 @@ void SocialConnector_Share(const char *text, const char *url, const char *textur
 
     NSArray *myItems = [NSArray arrayWithObjects:social, nil];
     UIActivityViewController *activityView = [[[UIActivityViewController alloc] initWithActivityItems:actItems applicationActivities:myItems] autorelease];
-
+    activityView.popoverPresentationController.sourceView = UnityGetGLViewController().view; 
     [UnityGetGLViewController() presentViewController:activityView animated:YES completion:nil];
 }
 

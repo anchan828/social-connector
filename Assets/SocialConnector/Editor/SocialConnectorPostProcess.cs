@@ -19,7 +19,7 @@ public class SocialConnectorPostProcess
 		var @from = "Assets/SocialConnector/Editor/LINE.imageset";
 		var @to = Path.Combine (path, "Unity-iPhone/Images.xcassets/LINE.imageset");
 
-		if(Directory.Exists(@from))
+		if(Directory.Exists(@to))
 			return;
 
 		FileUtil.CopyFileOrDirectoryFollowSymlinks (@from, @to);

@@ -36,6 +36,9 @@ void *(^_myblock)(void);
 }
 
 - (BOOL)isInstalled {
+#if TARGET_IPHONE_SIMULATOR
+    return YES;
+#endif
     return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:_scheme]];
 }
 

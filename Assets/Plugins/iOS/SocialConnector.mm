@@ -12,6 +12,7 @@ extern "C" {
 
 @interface SocialActivity : UIActivity
 - (id)initWithTitle:(NSString *)title scheme:(NSString *)scheme imageName:(NSString *)imageName action:(id)myblock;
+- (BOOL)isInstalled;
 @end
 
 @implementation SocialActivity
@@ -35,6 +36,9 @@ void *(^_myblock)(void);
 }
 
 - (BOOL)isInstalled {
+#if TARGET_IPHONE_SIMULATOR
+    return YES;
+#endif
     return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:_scheme]];
 }
 
@@ -123,9 +127,17 @@ void SocialConnector_Share(const char *text, const char *url, const char *textur
 
     }] autorelease];
 
-    NSArray *myItems = [NSArray arrayWithObjects:social, nil];
+    NSArray *myItems = [NSArray arrayWithObjects:nil, nil];
+    
+    if (social.isInstalled) {
+        myItems = [myItems arrayByAddingObject:social];
+    }
+    
     UIActivityViewController *activityView = [[[UIActivityViewController alloc] initWithActivityItems:actItems applicationActivities:myItems] autorelease];
-    activityView.popoverPresentationController.sourceView = UnityGetGLViewController().view; 
+
+    if(floorf(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_7_1)
+        activityView.popoverPresentationController.sourceView = UnityGetGLViewController().view;
+
     [UnityGetGLViewController() presentViewController:activityView animated:YES completion:nil];
 }
 

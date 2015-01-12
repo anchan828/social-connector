@@ -1,4 +1,4 @@
-Social Connector v0.3.3
+Social Connector v0.3.5
 ================
 
 1つのAPIでTwitter/Facebook/LINEにポスト出来るUnityプラグインです。

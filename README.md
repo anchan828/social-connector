@@ -1,5 +1,7 @@
-Social Connector v0.3.5
+Social Connector v0.3.6
 ================
+
+**Unity 4.x の方は [v0.3.5](https://github.com/anchan828/social-connector/releases/tag/v0.3.5) を使用してください。**
 
 1つのAPIでTwitter/Facebook/LINEにポスト出来るUnityプラグインです。
 

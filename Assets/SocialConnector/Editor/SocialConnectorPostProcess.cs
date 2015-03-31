@@ -9,7 +9,7 @@ public class SocialConnectorPostProcess
 	[PostProcessBuild]
 	public static void OnPostProcessBuild (BuildTarget target, string path)
 	{
-		if (target != BuildTarget.iPhone)
+		if (target != BuildTarget.iOS)
 			return;
 		CopyImageset (path);
 	}

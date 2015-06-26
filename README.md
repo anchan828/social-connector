@@ -8,7 +8,7 @@ Social Connector v0.3.6
 今まで使用していたPostMessageを使用したい方は[こちら](https://github.com/anchan828/social-connector/releases/tag/v0.2.9)
 
 
-**注意:** Android版のFacebookアプリはACTION_SENDを許可していないのでテキストは共有できません。
+**注意:** Facebookは事前のテキスト挿入を許可していないのでテキストの共有できません。 [https://developers.facebook.com/docs/apps/review/prefill](https://developers.facebook.com/docs/apps/review/prefill)
 
 # Requirements
 

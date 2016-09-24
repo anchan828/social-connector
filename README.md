@@ -28,49 +28,45 @@ SocialConnector.Share("Social Connector", "https://github.com/anchan828/social-c
 ## サンプル
 
 
-See  [Assets/Plugins/SocialConnector/Sample/Sample.cs](https://github.com/anchan828/social-connector/blob/master/Assets/Plugins/SocialConnector/Sample/Sample.cs)
-
-![](https://dl.dropboxusercontent.com/u/153254465/screenshot/2016-09-24%2019.19.07.png)
+See  [Assets/Plugins/SocialConnector/Sample/Sample.cs](https://github.com/anchan828/social-connector/blob/master/Assets/SocialConnector/Sample/Sample.cs)
 
 ```
 using UnityEngine;
 
-public class Sample : MonoBehaviour
+namespace SocialConnector
 {
-    string imagePath
-    {
-        get
-        {
-            return Application.persistentDataPath + "/image.png";
-        }
-    }
+	public class Sample : MonoBehaviour
+	{
+		string imagePath {
+			get {
+				return Application.persistentDataPath + "/image.png";
+			}
+		}
 
-    void OnGUI()
-    {
+		void OnGUI ()
+		{
 
-        if (GUILayout.Button("<size=30><b>Take</b></size>", GUILayout.Height(60)))
-        {
-            Application.CaptureScreenshot("image.png");
-        }
+			if (GUILayout.Button ("<size=30><b>Take</b></size>", GUILayout.Height (60))) {
+				Application.CaptureScreenshot ("image.png");
+			}
 
-        GUILayout.Space(60);
+			GUILayout.Space (60);
 
-        ///=================
-        /// Share
-        ///=================
+			///=================
+			/// Share
+			///=================
 
-        if (GUILayout.Button("<size=30><b>Share</b></size>", GUILayout.Height(60)))
-        {
-            SocialConnector.Share("Social Connector", "https://github.com/anchan828/social-connector", null);
-        }
-        if (GUILayout.Button("<size=30><b>Share Image</b></size>", GUILayout.Height(60)))
-        {
-            SocialConnector.Share("Social Connector", "https://github.com/anchan828/social-connector", imagePath);
-        }
-    }
+			if (GUILayout.Button ("<size=30><b>Share</b></size>", GUILayout.Height (60))) {
+				SocialConnector.Share ("Social Connector", "https://github.com/anchan828/social-connector", null);
+			}
+			if (GUILayout.Button ("<size=30><b>Share Image</b></size>", GUILayout.Height (60))) {
+				SocialConnector.Share ("Social Connector", "https://github.com/anchan828/social-connector", imagePath);
+			}
+		}
+	}
 }
 ```
-
+![](https://dl.dropboxusercontent.com/u/153254465/screenshot/2016-09-24%2019.19.07.png)
 
 ## 技術的なお話
 

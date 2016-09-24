@@ -1,55 +1,36 @@
-Social Connector v0.3.6
+Social Connector v0.4.0
 ================
 
-**Unity 4.x の方は [v0.3.5](https://github.com/anchan828/social-connector/releases/tag/v0.3.5) を使用してください。**
-
-1つのAPIでTwitter/Facebook/LINEにポスト出来るUnityプラグインです。
-
-今まで使用していたPostMessageを使用したい方は[こちら](https://github.com/anchan828/social-connector/releases/tag/v0.2.9)
+Android/iOSで、様々なアプリと連携を行いゲームスコアなどをシェアするプラグイン。
 
 
-**注意:** Facebookは事前のテキスト挿入を許可していないのでテキストの共有できません。 [https://developers.facebook.com/docs/apps/review/prefill](https://developers.facebook.com/docs/apps/review/prefill)
+**注意:** 
 
-# Requirements
+* Facebookはプライバシーポリシーにより事前のテキスト挿入を許可していないのでテキストの共有はできません。 [https://developers.facebook.com/docs/apps/review/prefill](https://developers.facebook.com/docs/apps/review/prefill)
+* このプラグインでは LINE は 画像(+テキスト)のみ共有できます。テキストのみはできません。（ただし LINE Keepは可能）
 
-## iOS
-* **iOS6.0+** 
 
-## Android
+## Requirements
+
+### iOS
+* **iOS8.2+** 
+
+### Android
 * Android 2.3+
 
-# Usage
+## 使い方
 
 ```
 SocialConnector.Share("Social Connector", "https://github.com/anchan828/social-connector", imagePath);
 ```
 
 
-# やらないといけないこと
-
-iOSプロジェクトに[LINEアイコン画像](http://line.me/logo/ja)を含めなければいけません。デフォルトではダミー画像となっています。なので差し替えてください。
-
-サイズ(px)|iOS6|iOS7|iOS8|ファイル名|用途
-:---|:---:|:---:|:---:|:---|:---
-57x57|○|-|-|LINE_icon01-57~iphone.png|iPhone
-114x114|○|-|-|LINE_icon01-57@2x~iphone.png|iPhone
-120x120|-|○|-|LINE_icon01-60@2x~iphone.png|iPhone
-180x180|-|-|○|LINE_icon01-60@3x~iphone.png|iPhone
-72x72|○|-|-|LINE_icon01-72~ipad.png|iPad
-144x144|○|○|○|LINE_icon01-72@2x~ipad.png|iPad
-
-
-
-![](https://dl.dropboxusercontent.com/u/153254465/screenshot2/ss%202014-12-29%2013.46.57.png)
-
-ファイル名は固定です。変更したい場合は`Contents.json`内を編集してください。
-
-# Example
+## サンプル
 
 
 See  [Assets/Plugins/SocialConnector/Sample/Sample.cs](https://github.com/anchan828/social-connector/blob/master/Assets/Plugins/SocialConnector/Sample/Sample.cs)
 
-![](https://dl.dropboxusercontent.com/u/153254465/screenshot/2014-05-26%2018.23.09.png)
+![](https://dl.dropboxusercontent.com/u/153254465/screenshot/2016-09-24%2019.19.07.png)
 
 ```
 using UnityEngine;
@@ -90,7 +71,26 @@ public class Sample : MonoBehaviour
 }
 ```
 
-# LICENSE
+
+## 技術的なお話
+
+このプラグインは、次の技術を使用しています。
+
+* Android: `ACTION_SEND`
+* iOS: `UIActivityViewController`
+
+`ACTION_SEND`、`UIActivityViewController` は不特定多数のアプリに対してシェアを行うための機能です。特定のアプリに対してのシェアをサポートしているわけではないということに注意してください。
+
+
+## 更新履歴
+
+v0.4.0
+
+* [iOS] UIActivityViewController が日本語で表示されていなかった問題を解決
+* [iOS] 通常の機能でシェアができるようになったため、LINEのインテグレーションを削除
+* SocialConnectorの名前空間を追加
+
+## ライセンス
 
 ```
 Copyright (C) 2011 Keigo Ando

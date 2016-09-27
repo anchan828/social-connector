@@ -4,7 +4,7 @@ using UnityEditor;
 using System.IO;
 using UnityEditor.iOS.Xcode;
 using System.Linq;
-
+using System.Collections.Generic;
 namespace SocialConnector
 {
 	public class SocialConnectorPostProcess
@@ -15,6 +15,10 @@ namespace SocialConnector
 			if (target != BuildTarget.iOS)
 				return;
 			AddLanguage (path, "ja");
+
+			AddPermissions(path, new []{
+				new KeyValuePair<string,string>("NSPhotoLibraryUsageDescription", "Save the Application's screenshot.")
+			});			
 		}
 
 		static void AddLanguage (string path, params string[] languages)
@@ -32,7 +36,6 @@ namespace SocialConnector
 			.Cast<PlistElementArray> ()
 			.FirstOrDefault ();
 		
-
 			if (localizations == null)
 				localizations = plist.root.CreateArray (localizationKey);
 
@@ -41,6 +44,27 @@ namespace SocialConnector
 					localizations.AddString (language);
 			}
 			
+			plist.WriteToFile (plistPath);
+		}
+
+		static void AddPermissions(string path , params KeyValuePair<string,string>[] permissions){
+			var plistPath = Path.Combine (path, "Info.plist");
+			var plist = new PlistDocument ();
+
+			plist.ReadFromFile (plistPath);
+			foreach(var permission in permissions){
+
+
+				var count = plist.root.values
+					.Where (kv => kv.Key == permission.Key)
+					.Select (kv => kv.Value)
+					.Count();
+
+				if(count == 0){
+					plist.root.SetString(permission.Key,permission.Value);
+				}
+			}
+
 			plist.WriteToFile (plistPath);
 		}
 	}

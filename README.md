@@ -68,6 +68,14 @@ namespace SocialConnector
 ```
 ![](https://dl.dropboxusercontent.com/u/153254465/screenshot/2016-09-24%2019.19.07.png)
 
+## Advanced
+
+* iOS
+  * 画像を端末に保存するときにプライバシーアクセス - NSPhotoLibraryUsageDescription が必要です。プラグイン側で自動的に追加していますが、使用目的の説明文が英語で記載されています（Save the Application's screenchot. という文）。もし日本語で表示したい場合は Localizable.strings を追加してください。ja.lproj/InfoPlist.stringsに以下のように追加すれば大丈夫なはず。
+      * NSPhotoLibraryUsageDescription="スクリーンショットを保存するためにアクセスします。"
+      * InfoPlist.string の追加の仕方 - http://qiita.com/hiroo0529/items/da9909f6787f2dce75e3
+
+
 ## 技術的なお話
 
 このプラグインは、次の技術を使用しています。

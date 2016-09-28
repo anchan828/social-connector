@@ -1,4 +1,4 @@
-Social Connector v0.4.0
+Social Connector v0.4.1
 ================
 
 Android/iOSで、様々なアプリと連携を行いゲームスコアなどをシェアするプラグイン。
@@ -87,6 +87,10 @@ namespace SocialConnector
 
 
 ## 更新履歴
+
+v0.4.1
+
+* [iOS] 画像を保存するときのために NSPhotoLibraryUsageDescription を追加
 
 v0.4.0
 

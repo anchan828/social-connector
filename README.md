@@ -105,7 +105,7 @@ Android API Level 24 から、画像のシェアにおいて FileProvider の使
 
 v0.5.0
 
-* [Android] FileProvider に対応。詳細は[FileProviderに対応する](#FileProviderに対応する)を参照してください。
+* [Android] FileProvider に対応。詳細は[FileProviderに対応する](#fileproviderに対応する)を参照してください。
 
 v0.4.1
 

@@ -8,6 +8,7 @@ Android/iOSで、様々なアプリと連携を行いゲームスコアなどを
 
 * Facebookはプライバシーポリシーにより事前のテキスト挿入を許可していないのでテキストの共有はできません。 [https://developers.facebook.com/docs/apps/review/prefill](https://developers.facebook.com/docs/apps/review/prefill)
 * このプラグインでは LINE は 画像(+テキスト)のみ共有できます。テキストのみはできません。（ただし LINE Keepは可能）
+* AndroidはFileProviderに対応しなければいけません。詳細は[FileProviderに対応する](#fileproviderに対応する)を参照してください。
 
 
 ## Requirements

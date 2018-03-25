@@ -1,4 +1,4 @@
-Social Connector v0.4.1
+Social Connector v0.5.0
 ================
 
 Android/iOSで、様々なアプリと連携を行いゲームスコアなどをシェアするプラグイン。
@@ -66,7 +66,22 @@ namespace SocialConnector
 	}
 }
 ```
-![](https://dl.dropboxusercontent.com/u/153254465/screenshot/2016-09-24%2019.19.07.png)
+![](https://i.gyazo.com/09bb3de393fad3dbbc7151639317f960.png)
+
+## FileProviderに対応する
+
+Android API Level 24 から、画像のシェアにおいて FileProvider の使用が必須となりました。このため、プロジェクト単位で `AndroidManifest.xml` をカスタマイズしなければいけません。
+
+### Social Connectorが用意したAndroidManifest.xmlを使用する
+
+実装例として`SocialConnector/Plugins/Android`フォルダー配下に`AndroidManifest.xml`を配置しています。
+以下の手順に沿うことで、FileProviderに対応することが可能です。
+
+1. `SocialConnector/Plugins/Android`フォルダーを`Plugins/Android`フォルダーに移動する 
+   ![](https://i.gyazo.com/1a6d9f42d66448371cdc538230719b23.png)
+2. `AndroidManifest.xml`内の`com.kyusyukeigo.socialconnector.fileprovider`をプロジェクトのパッケージ名に書き換える。（例: パッケージ名が`com.example.game`であれば `com.example.game.fileprovider`に書き換える）
+   * パッケージ名は、Player Settingsの`Identification`や`Application.identifier`で確認することができます。
+     ![](https://i.gyazo.com/1bcaa3d67748fe6fd253c1da8a9963bd.png)
 
 ## Advanced
 
@@ -87,6 +102,10 @@ namespace SocialConnector
 
 
 ## 更新履歴
+
+v0.5.0
+
+* [Android] FileProvider に対応。詳細は[FileProviderに対応する](#FileProviderに対応する)を参照してください。
 
 v0.4.1
 

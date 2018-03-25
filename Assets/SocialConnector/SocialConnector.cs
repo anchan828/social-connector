@@ -42,9 +42,21 @@ namespace SocialConnector
 					intent.Call<AndroidJavaObject> ("putExtra", "android.intent.extra.TEXT", text);
 
 				if (!string.IsNullOrEmpty (textureUrl)) {
-					var uri = new AndroidJavaClass ("android.net.Uri");
-					var file = new AndroidJavaObject ("java.io.File", textureUrl);
-					intent.Call<AndroidJavaObject> ("putExtra", "android.intent.extra.STREAM", uri.CallStatic<AndroidJavaObject> ("fromFile", file));
+
+					var versionClazz = new AndroidJavaClass("android.os.Build$VERSION");
+    				var apiLevel = versionClazz.GetStatic<int>("SDK_INT");
+					AndroidJavaObject uri;
+					if(24 <= apiLevel) {
+						var context = activity.Call<AndroidJavaObject> ("getApplicationContext");
+						var fileProvider = new AndroidJavaClass("android.support.v4.content.FileProvider");
+						var file = new AndroidJavaObject ("java.io.File", textureUrl);
+						uri = fileProvider.CallStatic<AndroidJavaObject>("getUriForFile", context, Application.identifier + ".fileprovider", file);
+					} else {
+						var uriClazz = new AndroidJavaClass ("android.net.Uri");
+						var file = new AndroidJavaObject ("java.io.File", textureUrl);
+						uri = uriClazz.CallStatic<AndroidJavaObject> ("fromFile", file);
+					}
+					intent.Call<AndroidJavaObject> ("putExtra", "android.intent.extra.STREAM", uri);
 				}
 				var chooser = intent.CallStatic<AndroidJavaObject> ("createChooser", intent, "");
 				chooser.Call<AndroidJavaObject> ("putExtra", "android.intent.extra.EXTRA_INITIAL_INTENTS", intent);

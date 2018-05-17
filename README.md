@@ -84,6 +84,10 @@ Android API Level 24 から、画像のシェアにおいて FileProvider の使
    * パッケージ名は、Player Settingsの`Identification`や`Application.identifier`で確認することができます。
      ![](https://i.gyazo.com/1bcaa3d67748fe6fd253c1da8a9963bd.png)
 
+### トラブルシューティング
+
+もし、何かしらのエラーが起きた場合 `support-core-utils-25.3.1.aar` を削除してみてください。ライブラリの競合が解決し、ビルドが通るかもしれません。
+
 ## Advanced
 
 * iOS
